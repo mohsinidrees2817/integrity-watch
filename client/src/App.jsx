@@ -26,7 +26,9 @@ function App() {
     const fetchData = async () => {
       try {
         // Make a GET request to the /getData endpoint
-        const response = await axios.get("http://localhost:4000/getData");
+        const response = await axios.get(
+          "https://integrity-watch.vercel.app/getData"
+        );
         setData(response.data);
         console.log("response", response.data);
       } catch (error) {
