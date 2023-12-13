@@ -6,7 +6,7 @@ const cors = require("cors");
 require("dotenv").config();
 const dummyData = require("./data.json");
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 const connectDB = require("./conectdb");
 
@@ -59,15 +59,22 @@ app.get("/getData", async (req, res) => {
   }
 });
 
-// calling post api to add data to MongoDB
-const addDataOnStartup = async () => {
-  try {
-    const response = await axios.post("http://localhost:4000/addData");
-    console.log(response.data);
-  } catch (error) {
-    console.error("Error adding data on startup:", error.message);
-  }
-};
+// // calling post api to add data to MongoDB
+// const addDataOnStartup = async () => {
+//   try {
+//     const response = await axios.post("http://localhost:4000/addData");
+//     console.log(response.data);
+//   } catch (error) {
+//     console.error("Error adding data on startup:", error.message);
+//   }
+// };
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
