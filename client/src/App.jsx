@@ -34,6 +34,10 @@ function App() {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      fetch("https://ifconfig.me/ip")
+        .then((response) => response.text())
+        .then((ip) => console.log("Vercel Deployment IP:", ip))
+        .catch((error) => console.error("Error getting IP:", error));
     };
 
     fetchData();

@@ -59,22 +59,24 @@ app.get("/getData", async (req, res) => {
   }
 });
 
-// // calling post api to add data to MongoDB
-// const addDataOnStartup = async () => {
-//   try {
-//     const response = await axios.post("http://localhost:4000/addData");
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error("Error adding data on startup:", error.message);
-//   }
-// };
+// calling post api to add data to MongoDB
+const addDataOnStartup = async () => {
+  try {
+    const response = await axios.get(
+      "https://integrity-watch.vercel.app/getData"
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error adding data on startup:", error.message);
+  }
+};
 
 app.get("/", (req, res) => {
+  let data = addDataOnStartup();
   res.send("Hello World!");
+  console.log("data from db", data);
 });
-
-
-
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
