@@ -23,6 +23,7 @@ function App() {
 
   // fetching data
   useEffect(() => {
+    axios.defaults.withCredentials = true;
     const fetchData = async () => {
       try {
         // Make a GET request to the /getData endpoint

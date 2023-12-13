@@ -6,14 +6,21 @@ const cors = require("cors");
 require("dotenv").config();
 const dummyData = require("./data.json");
 const app = express();
+app.use(
+  cors({
+    origin: "https://integriity-watch.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+app.use(express.json());
+
 const port = process.env.PORT || 4000;
 
 const connectDB = require("./conectdb");
 
 connectDB();
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
 
 // Define a mongoose schema for your data
 const roomSchema = new mongoose.Schema({
