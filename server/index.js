@@ -65,7 +65,9 @@ const addDataOnStartup = async () => {
     const response = await axios.get(
       "https://integrity-watch.vercel.app/getData"
     );
+    // const response  = await axios.post("http://localhost:4000/addData", dummyData);
     console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.error("Error adding data on startup:", error.message);
